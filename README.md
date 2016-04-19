@@ -1,4 +1,4 @@
-# Limbox
+# Limbox [![Build Status](https://travis-ci.org/inotom/limbox.svg?branch=master)](https://travis-ci.org/inotom/limbox)
 
 Limited checkbox mithril component.
 
