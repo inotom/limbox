@@ -31,6 +31,7 @@ m.mount(document.body, {
 ## Options
 
 | **Parameter** |  **Mandatory** | **Type** | **Default** | **Description** |
+| ------------- | -------------- | -------- | ----------- | --------------- |
 | **max** | optional | Number | 2 | Max size of selectable item |
 | **groupName** | optional | String | limbox[] | Element name attribute |
 | **names** | Array required | Array | | Array of item label text and value text |
