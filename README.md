@@ -2,6 +2,12 @@
 
 Limited checkbox mithril component.
 
+## Installation
+
+```
+$ npm install git://github.com/inotom/limbox.git#v1.0.0 --save-dev
+```
+
 ## Sample code
 
 ```javascript
