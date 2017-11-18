@@ -1,52 +1,56 @@
-/*!
- * Limbox
- *
- * @author iNo <wdf7322@yahoo.co.jp>
- * @version 1.0.0
- * @license MIT
- */
-
 import m from 'mithril';
-import Check from './Check';
-import CheckList from './CheckList';
+import Check from './models/Check';
+import CheckList from './models/CheckList';
 import pickArg from 'swsutils/src/pickArg';
+import existy from 'swsutils/src/existy';
 
 const DEFAULT_MAX = 2;
 
-export default {
-  controller: (opts) => {
-    let max = pickArg(opts.max, DEFAULT_MAX);
-    let checkedIndexes = pickArg(opts.checkedIndexes, m.prop([]));
-    let groupName = pickArg(opts.groupName, 'limbox[]');
-    let names = pickArg(opts.names, []);
+class Limbox {
+
+  constructor() {
+    this.list = [];
+    this.groupName = 'limbox[]';
+  }
+
+  oninit(vnode) {
+    let max = pickArg(vnode.attrs.max, DEFAULT_MAX);
+    let names = pickArg(vnode.attrs.names, []);
     let cl = CheckList.create(max);
     names.forEach((name) => {
       cl.add(Check.create(name));
     });
-    return {
-      list: cl,
-      checkedIndexes: checkedIndexes,
-      groupName: groupName
-    };
-  },
-  view: (ctrl) => {
-    let list = ctrl.list;
-    return m('div.limbox-container', [
-      list.getAll().map((item, index) => {
-        return m('label', [
+    this.list = cl;
+    this.groupName = pickArg(vnode.attrs.groupName, 'limbox[]');
+  }
+
+  view(vnode) {
+    return m('.sws-limbox', [
+      this.list.getAll().map((item, index) => {
+
+        const modifier = item.getState() ? '--checked' : '';
+
+        return m('label', {
+          class: `sws-limbox__item-label${modifier}`
+        }, [
           m('input', {
+            class: `sws-limbox__item-checkbox${modifier}`,
             type: 'checkbox',
-            name: ctrl.groupName,
+            name: this.groupName,
             value: item.getName(),
             checked: item.getState(),
             onchange: (e) => {
               let method = e.target.checked ? 'checkOn' : 'checkOff';
-              list[method](index);
-              ctrl.checkedIndexes(list.getCheckedIndexList());
+              this.list[method](index);
+              if (existy(vnode.attrs.onchange)) {
+                vnode.attrs.onchange(this.list.getCheckedIndexList());
+              }
             }
           })
         ], item.getName());
       })
     ]);
   }
-};
+}
+
+export default Limbox;

@@ -5,26 +5,26 @@
 <title>Limbox Demo</title>
 </head>
 <body>
-
-<h1>Limbox Demo</h1>
-<div id="app"></div>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/mithril/0.2.3/mithril.min.js"></script>
-<script src="limbox-standalone.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mithril/1.1.5/mithril.min.js"></script>
+<script src="limbox.min.js"></script>
 <script>
 var names = ['Orange', 'Apple', 'Grape', 'Lemon', 'Banana'];
-var checkedIndexes = m.prop([]);
-m.mount(document.getElementById('app'), {
+var checkedIndexes = [];
+
+m.mount(document.body, {
   view: function() {
-    return m('div', [
-      m.component(limbox, {
+    return m('.app', [
+      m('h1', 'Limbox Demo'),
+      m(Limbox, {
         max: 2,
         groupName: 'fruit[]',
         names: names,
-        checkedIndexes: checkedIndexes
+        onchange: function(checkedList) {
+          checkedIndexes = checkedList;
+        }
       }),
       m('h2', 'Setected items'),
-      m('ul', checkedIndexes().map(function(index) {
+      m('ul', checkedIndexes.map(function(index) {
         return m('li', names[index]);
       }))
     ]);

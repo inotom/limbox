@@ -1,5 +1,5 @@
 import assert from 'power-assert';
-import Check from '../src/Check';
+import Check from '../src/models/Check';
 
 describe('Check', function() {
 

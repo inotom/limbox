@@ -1,11 +1,10 @@
 import assert from 'power-assert';
-import Check from '../src/Check';
-import CheckList from '../src/CheckList';
+import Check from '../src/models/Check';
+import CheckList from '../src/models/CheckList';
 
 describe('CheckList', function() {
 
-  let fruits,
-      cl;
+  let fruits, cl;
 
   beforeEach(function() {
     fruits = ['apple', 'orange', 'banana'];

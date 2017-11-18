@@ -1,0 +1,13 @@
+{
+  "libs": [
+    "browser",
+    "ecmascript",
+    "mithril",
+    "chai"
+  ],
+  "plugins": {
+    "doc_comment": {},
+    "complete_strings": {},
+    "es_modules": {}
+  }
+}

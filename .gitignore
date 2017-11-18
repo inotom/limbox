@@ -1,12 +1,6 @@
 .DS_Store
-.sass-cache
-.svn
-tags
-*.tags
 *.swp
 *~
 *.log
 *.lock
 node_modules
-.pass
-.pwd

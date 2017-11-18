@@ -1,3 +1,3 @@
-import limbox from './index';
+import Limbox from './index';
 
-window.limbox = limbox;
+window.Limbox = Limbox;

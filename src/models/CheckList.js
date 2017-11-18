@@ -21,7 +21,7 @@ class CheckList {
 
   checkOff(index) {
     let deleteIndex = -1;
-    for (let i = 0, len = this._checkedIndexList.length; i< len; i++) {
+    for (let i = 0, len = this._checkedIndexList.length; i < len; i++) {
       if (index === this._checkedIndexList[i]) {
         deleteIndex = i;
         break;

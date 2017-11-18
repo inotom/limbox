@@ -5,14 +5,14 @@ Limited checkbox mithril component.
 ## Installation
 
 ```
-$ npm install git://github.com/inotom/limbox.git#v1.0.0 --save-dev
+$ npm install git://github.com/inotom/limbox.git#v2.0.0 --save-dev
 ```
 
 ## Sample code
 
 ```javascript
 import m from 'mithril';
-import limbox from 'limbox/limbox';
+import Limbox from 'limbox';
 
 let names = ['Orange', 'Apple', 'Grape', 'Lemon', 'Banana'];
 let checkedIndexes = m.prop([]);
@@ -20,13 +20,15 @@ let checkedIndexes = m.prop([]);
 m.mount(document.body, {
   view: () => {
     return m('div', [
-      m.component(limbox, {
+      m(Limbox, {
         max: 2,
         groupName: 'fruit[]',
         names: names,
-        checkedIndexes: checkedIndexes
+        onchange: function(checkedList) {
+          checkedIndexes = checkedList;
+        }
       }),
-      m('ul', checkedIndexes().map((index) => {
+      m('ul', checkedIndexes.map(function(index) {
         return m('li', names[index]);
       }))
     ]);
@@ -34,20 +36,18 @@ m.mount(document.body, {
 });
 ```
 
+## Demo
+
+[demo](http://demo.serendip.ws/limbox/)
+
 ## Options
 
-| **Parameter** |  **Mandatory** | **Type** | **Default** | **Description** |
-| ------------- | -------------- | -------- | ----------- | --------------- |
-| **max** | optional | Number | 2 | Max size of selectable item |
-| **groupName** | optional | String | limbox[] | Element name attribute |
-| **names** | Array required | Array | | Array of item label text and value text |
-| **checkedIndexes** | Array required | Array | | Array of selected item index |
-
-## Install
-
-```
-$ npm install git://github.com/inotom/limbox.git --save-dev
-```
+| **Parameter** |  **Mandatory** | **Type** | **Default** | **Description**                         |
+| ------------- | -------------- | -------- | ----------- | --------------------------------------- |
+| `max`         | optional       | Number   | `2`         | Max size of selectable item             |
+| `groupName`   | optional       | String   | `limbox[]`  | Element name attribute                  |
+| `names`       | Array required | Array    |             | Array of item label text and value text |
+| `onchange`    | optional       | Function |             | Callback function                       |
 
 ## License
 
